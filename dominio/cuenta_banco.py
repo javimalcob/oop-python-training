@@ -1,7 +1,7 @@
 
 class CuentaBanco():
 
-    def __init__(self, codigo : int, saldo: int, titular: str):
+    def __init__(self, codigo=0, saldo=0.0, titular=''):
         # Atributos
         self.__codigo = codigo
         self.__saldo = saldo
@@ -16,11 +16,22 @@ class CuentaBanco():
 
     def get_saldo(self):
         return self.__saldo
-    def set_saldo(self, new_saldo):
-        self.__saldo = new_saldo
-    
+
     
     def get_titular(self):
         return self.__titular
     def set_titular(self, new_titular):
         self.__titular = new_titular
+
+    # Comportamiento propios: depositar() y extraer()
+
+    def depositar(self, monto):
+        if monto > 0:
+            self.__saldo = self.__saldo + monto
+            print("Se realizó exitosamente el depósito")
+
+    def extraccion(self, monto):
+        if monto > 0 and self.__saldo >= monto:
+            self.__saldo = self.__saldo - monto
+            print("Se realizó exitosamente la extracción")
+        
