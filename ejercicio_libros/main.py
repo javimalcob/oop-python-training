@@ -1,7 +1,16 @@
-from dominio import libro
+from dominio import libro, biblioteca
+
 
 if __name__== "__main__":
    
+
+    #Crear un objeto biblioteca
+    while True:
+        cant = int(input("Ingrese la cantidad de libros de la biblioteca (>0) "))
+        if cant > 0:
+            break
+
+    mi_biblioteca = biblioteca.Biblioteca(cant)
 
     libro1 = libro.Libro() 
     
@@ -17,13 +26,17 @@ if __name__== "__main__":
     
     libro2 = libro.Libro(isbn2, autor2, titulo2, paginas2)
 
-    #Resultados
-    print("Libro 1: ", libro1)
-    print("Libro 2:", libro2.__str__())
-
-    if libro1.get_paginas() > libro2.get_paginas():
-        print("Libro 1 con mas paginas")
-    elif libro2.get_paginas() > libro1.get_paginas():
-        print("Libro 2 con mas paginas")
+    if(mi_biblioteca.agregar_libro(libro1)):
+        print("Libro agregado")
     else:
-        print("Ambos libros tienen la misma cantidad de paginas")
+        print("No se puedo agregar el libro")
+
+    mi_biblioteca.agregar_libro(libro2)
+    
+    #Mostrar estado de la biblioteca
+    listado = mi_biblioteca.mostrar_listado()
+    print(listado)
+    #Resultados
+    #print("Libro 1: ", libro1)
+    #print("Libro 2:", libro2.__str__())
+
